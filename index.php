@@ -39,7 +39,12 @@
             <button>Pesquisar</button>
         </div>
     </form>
-    
+
+<!--    <div id="adicionarDeletar">
+        <button> <img src="img/iconeAdicionar.png"> ADICIONAR FUNCIONÁRIO</button>
+        <button> <img src="img/iconeDeletar.png"> APAGAR FUNCIONÁRIO</button>
+    </div> -->
+
     <table>
         <tr>
             <th>ID:</th>
