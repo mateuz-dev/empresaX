@@ -2,7 +2,7 @@
     require("./funcoes.php");
     $funcionarios = lerArquivo("./empresaX.json");
     if(isset($_GET["inputPesquisarFuncionario"])){
-        $funcionarios = pesquisarFuncionario($funcionarios, $_GET["inputPesquisarFuncionario"], $_GET["filtroPesquisa"]);
+        $funcionarios = pesquisarFuncionario($funcionarios, $_GET["inputPesquisarFuncionario"], $_GET["filtroPesquisa"], "./empresaX.json");
     }
 ?>
 
@@ -15,117 +15,93 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="./script.js"></script>
     <title>EMPRESA X | Funcionários</title>
 </head>
 
-<body>
-    <h1>Funcionários da EMPRESA X</h1>
-    <p>A empresa conta com 1001 funcoinários</p>
 
-    <form>
+<body>
+    <div id="modalContainer">
+        <div id="adicionarFuncionarioTela">
+            <p>Adicionar Funciorário</p>
+            <form id="formFuncionarioNovo" action="./acoes.php" method="POST">
+                <input type="text" name="id" placeholder="ID">
+                <input type="text" name="first_name" placeholder="NOME">
+                <input type="text" name="last_name" placeholder="SOBRENOME">
+                <input type="text" name="email" placeholder="EMAIL">
+                <input type="text" name="gender" placeholder="GÊNERO">
+                <input type="text" name="ip_address" placeholder="ENDEREÇO IP">
+                <input type="text" name="country" placeholder="COUNTRY">
+                <input type="text" name="department" placeholder="DEPARTAMENTO">
+                <button>SALVAR</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <h1>Funcionários da EMPRESA X</h1>
+    <p>A empresa conta com <em><?=count($funcionarios)?></em> funcoinários</p>
+    
+
+
+    <form id="formPesquisa">
         <div id="divTop">
             <label for="inputPesquisarFuncionario">
                 Pesquisar por <select name="filtroPesquisa" id="filtroPesquisa">
-                    <option value="nome">NOME</option>
-                    <option value="sobrenome">SOBRENOME</option>
+                    <option value="first_name">NOME</option>
+                    <option value="last_name">SOBRENOME</option>
                     <option value="id">ID</option>
-                    <option value="pais">PAÍS</option>
-                    <option value="departamento">DEPARTAMENTO</option>
+                    <option value="country">PAÍS</option>
+                    <option value="department">DEPARTAMENTO</option>
                 </select>
             </label>
         </div>
         <div id="divBottom">
-            <input type="text" name="inputPesquisarFuncionario" id="inputPesquisarFuncionario" placeholder="Digite o nome">
-            <button>Pesquisar</button>
-        </div>
+            <input type="text" name="inputPesquisarFuncionario" id="inputPesquisarFuncionario" placeholder="Pesquisar...">
+            <button> <img src="img/iconePesquisar.png">PESQUISAR</button>
     </form>
+        <button onclick="showModal()" id="botaoAdicionarFuncionario"> <img src="img/iconeAdicionar.png">ADICIONAR FUNCIONÁRIO</button>
+    </div>
 
-<!--    <div id="adicionarDeletar">
-        <button> <img src="img/iconeAdicionar.png"> ADICIONAR FUNCIONÁRIO</button>
-        <button> <img src="img/iconeDeletar.png"> APAGAR FUNCIONÁRIO</button>
-    </div> -->
 
-    <table>
-        <tr>
-            <th>ID:</th>
-            <th>NOME:</th>
-            <th>SOBRENOME:</th>
-            <th>E-MAIL:</th>
-            <th>SEXO:</th>
-            <th>ENDEREÇO IP:</th>
-            <th>PAÍS:</th>
-            <th>DEPARTAMENTO:</th>
-        </tr>
-        <?php
-        foreach($funcionarios as $funcionario){
-        ?>
-        <tr>
-            <td> <?=$funcionario->id?> </td>
-            <td> <?=$funcionario->first_name?> </td>
-            <td> <?=$funcionario->last_name?> </td>
-            <td> <?=$funcionario->email?> </td>
-            <td> <?=$funcionario->gender?> </td>
-            <td> <?=$funcionario->ip_address?> </td>
-            <td> <?=$funcionario->country?> </td>
-            <td> <?=$funcionario->department?> </td>
-        </tr>
-        <?php
-        }
-        ?>
-    </table>
+
+    <div id="conteudo">
+        <table>
+            <tr>
+                <th>ID:</th>
+                <th>NOME:</th>
+                <th>SOBRENOME:</th>
+                <th>E-MAIL:</th>
+                <th>SEXO:</th>
+                <th>ENDEREÇO IP:</th>
+                <th>PAÍS:</th>
+                <th>DEPARTAMENTO:</th>
+                <th>EDITAR:</th>
+                <th>DELETAR:</th>
+            </tr>
+            <?php
+            foreach($funcionarios as $funcionario){
+            ?>
+            <tr>
+                <td> <?=$funcionario->id?> </td>
+                <td> <?=$funcionario->first_name?> </td>
+                <td> <?=$funcionario->last_name?> </td>
+                <td> <?=$funcionario->email?> </td>
+                <td> <?=$funcionario->gender?> </td>
+                <td> <?=$funcionario->ip_address?> </td>
+                <td> <?=$funcionario->country?> </td>
+                <td> <?=$funcionario->department?> </td>
+                <td> <img src="./img/iconeEditar.png" class="iconeTabela"> </td>
+                <td> <img src="./img/iconeDeletar.png" class="iconeTabela"> </td>
+            </tr>
+            <?php
+            }
+            ?>
+        </table>
+    </div>
+
 </body>
 
 </html>
-
-
-
-<style>
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    body{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    h1{
-        margin-top: 25px;
-    }
-    p{
-        font-size: 16px;
-    }
-    form{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
-    form div{
-        width: 100%;
-    }
-    form label{
-        text-align: start;
-        font-size: 10px;
-    }
-    form input{
-        border: none;
-        border-bottom: 1px solid black;
-        padding-left: 3px;
-        outline: none;
-    }
-    table{
-        font-size: 14px;
-        text-align: center;
-        border-collapse: collapse;
-    }
-    table td, th{
-        border: 1px solid black;
-        padding: 4px;
-    }
-</style>

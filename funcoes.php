@@ -5,26 +5,19 @@
         return $jsonArray;
     }
 
-    function pesquisarFuncionario($funcionarios, $nome, $value){
+    function pesquisarFuncionario($funcionarios, $pesquisa, $filtro){
         $funcionariosFiltro = [];
-
-        if($value == "nome"){
-            $value = "first_name";
-        } else if ($value = "sobrenome"){
-            $value = "last_name";
-        } else if($value == "id"){
-            $value = "id";
-        } else if($value == "pais"){
-            $value = "country";
-        } else{
-            $value = "department";
-        }
-
         foreach($funcionarios as $funcionario){
-            if ($funcionario->$value == $nome){
+            if(strpos($funcionario->$filtro, $pesquisa) !== false){
                 $funcionariosFiltro[] = $funcionario;
             }
         }
         return $funcionariosFiltro;
     }
-?>
+
+    function adicionarFuncionario($nomeArquivo, $novoFuncionario){
+        $funcionarios = lerArquivo($nomeArquivo);
+        $funcionarios[] = $novoFuncionario;
+        $json = json_encode($funcionarios);
+        file_put_contents($nomeArquivo, $json);
+    }
