@@ -1,9 +1,12 @@
 <?php
     require("./funcoes.php");
+
     $funcionarios = lerArquivo("./empresaX.json");
+
     if(isset($_GET["inputPesquisarFuncionario"])){
         $funcionarios = pesquisarFuncionario($funcionarios, $_GET["inputPesquisarFuncionario"], $_GET["filtroPesquisa"], "./empresaX.json");
     }
+
 ?>
 
 
@@ -29,7 +32,7 @@
         <div id="adicionarFuncionarioTela">
             <p>Adicionar Funciorário</p>
             <form id="formFuncionarioNovo" action="./acoes.php" method="POST">
-                <input type="text" name="id" placeholder="ID">
+                <input type="number" name="id" placeholder="ID">
                 <input type="text" name="first_name" placeholder="NOME">
                 <input type="text" name="last_name" placeholder="SOBRENOME">
                 <input type="text" name="email" placeholder="EMAIL">
@@ -38,8 +41,8 @@
                 <input type="text" name="country" placeholder="COUNTRY">
                 <input type="text" name="department" placeholder="DEPARTAMENTO">
                 <button>SALVAR</button>
-                <button id="buttonCancelar">CANCELAR</button>
             </form>
+            <button id="buttonCancelar" onclick="closeModal()">CANCELAR</button>
         </div>
     </div>
 
@@ -100,8 +103,8 @@
                 <td> <?=$funcionario->ip_address?> </td>
                 <td> <?=$funcionario->country?> </td>
                 <td> <?=$funcionario->department?> </td>
-                <td> <img src="./img/iconeEditar.png" class="iconeTabela"> </td>
-                <td> <img src="./img/iconeDeletar.png" class="iconeTabela"> </td>
+                <td> <button id="botaoEditarFuncionario"><img src="./img/iconeEditar.png" class="iconeTabela"> </button> </td>
+                <td> <button onclick="deletar(<?= $funcionario->id ?>)" id="botaoDeletarFuncionario"><img src="./img/iconeDeletar.png" class="iconeTabela"> </button> </td>
             </tr>
             <?php
             }

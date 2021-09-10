@@ -8,5 +8,12 @@ function closeModal(){
     document.querySelector("#adicionarFuncionarioTela").style.display = "none";
 }
 
-// document.getElementById("botaoAdicionarFuncionario").addEventListener('click', showModal());
-document.getElementById("buttonCancelar").addEventListener('click', showModal());
+function deletar($idFuncionario){
+    // pedido de confirmação
+    let confirmacao = confirm("Vocè tem certeza que quer deletar esse Funcionário");
+
+    // se sim, redirecionar para "acaoDeletar" com o id de parâmetro
+    if(confirmacao){
+        window.location = "./acaoDeletar.php?id=" + $idFuncionario;
+    }
+}

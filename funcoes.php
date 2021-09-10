@@ -21,3 +21,14 @@
         $json = json_encode($funcionarios);
         file_put_contents($nomeArquivo, $json);
     }
+
+    function deletarFuncionario($nomeArquivo, $idFuncionario){
+        $funcionarios = lerArquivo($nomeArquivo);
+        foreach ($funcionarios as $chave => $funcionario){
+            if ($funcionario->id == $idFuncionario){
+                unset ($funcionarioS[$chave]);
+            }
+        }
+        $json = json_encode(array_values($funcionarios));
+        file_put_contents($nomeArquivo, $json);
+    }
