@@ -11,6 +11,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
+
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +21,7 @@
     <script src="./script.js"></script>
     <title>EMPRESA X | Funcionários</title>
 </head>
+
 
 
 <body>
@@ -35,6 +38,7 @@
                 <input type="text" name="country" placeholder="COUNTRY">
                 <input type="text" name="department" placeholder="DEPARTAMENTO">
                 <button>SALVAR</button>
+                <button id="buttonCancelar">CANCELAR</button>
             </form>
         </div>
     </div>
@@ -62,8 +66,11 @@
             <input type="text" name="inputPesquisarFuncionario" id="inputPesquisarFuncionario" placeholder="Pesquisar...">
             <button> <img src="img/iconePesquisar.png">PESQUISAR</button>
     </form>
-        <button onclick="showModal()" id="botaoAdicionarFuncionario"> <img src="img/iconeAdicionar.png">ADICIONAR FUNCIONÁRIO</button>
     </div>
+
+    <button onclick="showModal()" id="botaoAdicionarFuncionario"> <img src="img/iconeAdicionar.png">ADICIONAR FUNCIONÁRIO</button>
+
+
 
 
 

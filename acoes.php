@@ -4,7 +4,7 @@ require("./funcoes.php");
 
 $novoFuncionario = [
     "id" => $_POST["id"],
-    "first_name" => $_POST["firsrt_name"],
+    "first_name" => $_POST["first_name"],
     "last_name" => $_POST["last_name"],
     "email" => $_POST["email"],
     "gender" => $_POST["gender"],
@@ -13,6 +13,6 @@ $novoFuncionario = [
     "department" => $_POST["department"]
 ];
 
-adicionarFuncionario("./empresa.json", $novoFuncionario);
+adicionarFuncionario("./empresaX.json", $novoFuncionario);
 
 header("location: index.php");
