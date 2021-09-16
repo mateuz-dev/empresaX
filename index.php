@@ -15,7 +15,6 @@
 <html lang="pt-BR">
 
 
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -103,7 +102,7 @@
                 <td> <?=$funcionario->ip_address?> </td>
                 <td> <?=$funcionario->country?> </td>
                 <td> <?=$funcionario->department?> </td>
-                <td> <button id="botaoEditarFuncionario"><img src="./img/iconeEditar.png" class="iconeTabela"> </button> </td>
+                <td> <button onclick="showModalEditar(), editar(<?= $funcionario->id ?>)" id="botaoEditarFuncionario"><img src="./img/iconeEditar.png" class="iconeTabela"> </button> </td>
                 <td> <button onclick="deletar(<?= $funcionario->id ?>)" id="botaoDeletarFuncionario"><img src="./img/iconeDeletar.png" class="iconeTabela"> </button> </td>
             </tr>
             <?php

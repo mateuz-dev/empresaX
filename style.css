@@ -124,7 +124,14 @@ table td, th{
     padding: 10px;
 }
 #adicionarFuncionarioTela input{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+#adicionarFuncionarioTela input{
     font-size: 12px;
     background: none;
+    width: 100%;
+}
+#adicionarFuncionarioTela button{
     width: 100%;
 }

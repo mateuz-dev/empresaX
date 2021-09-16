@@ -26,7 +26,7 @@
         $funcionarios = lerArquivo($nomeArquivo);
         foreach ($funcionarios as $chave => $funcionario){
             if ($funcionario->id == $idFuncionario){
-                unset ($funcionarioS[$chave]);
+                unset ($funcionarios[$chave]);
             }
         }
         $json = json_encode(array_values($funcionarios));
