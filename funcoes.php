@@ -32,3 +32,13 @@
         $json = json_encode(array_values($funcionarios));
         file_put_contents($nomeArquivo, $json);
     }
+
+    function buscarFuncionarioPorId($nomeArquivo, $idFuncionario){
+        $funcionarios = lerArquivo($nomeArquivo);
+        foreach ($funcionarios as $funcionario){
+            if($funcionario->id == $idFuncionario){
+                return $funcionario;
+            }
+        }
+        return false;
+    }
