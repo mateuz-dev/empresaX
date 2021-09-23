@@ -1,0 +1,12 @@
+TELA DE LOGIN  -> Nome e Senha
+	- Iniciar uma sessão
+	- salvar nome e senha em variáveis globais
+
+
+Se nome, senha ou ambos estivere errados:
+	- REDIRECIONAR para tela de Login
+	- Acabar a sessão
+
+
+Se nome e senha estiverem corretos
+	- REDIRECIONAR para tabela
