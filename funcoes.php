@@ -1,4 +1,7 @@
 <?php
+
+    function realizarLogin(){}
+
     function lerArquivo($nomeArquivo){
         $nomeArquivo = file_get_contents("./empresaX.json");
         $jsonArray = json_decode($nomeArquivo);

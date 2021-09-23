@@ -1,114 +1,49 @@
-<?php
-    require("./funcoes.php");
-
-    $funcionarios = lerArquivo("./empresaX.json");
-
-    if(isset($_GET["inputPesquisarFuncionario"])){
-        $funcionarios = pesquisarFuncionario($funcionarios, $_GET["inputPesquisarFuncionario"], $_GET["filtroPesquisa"], "./empresaX.json");
-    }
-
-?>
-
-
-
 <!DOCTYPE html>
-<html lang="pt-BR">
 
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="./script.js"></script>
-    <title>EMPRESA X | Funcionários</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="index.css">
+
+    <title>SESSÕES NO PHP</title>
+
 </head>
 
-
-
 <body>
-    <div id="modalContainer">
-        <div id="adicionarFuncionarioTela">
-            <p>Adicionar Funciorário</p>
-            <form id="formFuncionarioNovo" action="./acoes.php" method="POST">
-                <input type="number" name="id" placeholder="ID">
-                <input type="text" name="first_name" placeholder="NOME">
-                <input type="text" name="last_name" placeholder="SOBRENOME">
-                <input type="text" name="email" placeholder="EMAIL">
-                <input type="text" name="gender" placeholder="GÊNERO">
-                <input type="text" name="ip_address" placeholder="ENDEREÇO IP">
-                <input type="text" name="country" placeholder="COUNTRY">
-                <input type="text" name="department" placeholder="DEPARTAMENTO">
-                <button>SALVAR</button>
-            </form>
-            <button id="buttonCancelar" onclick="closeModal()">CANCELAR</button>
-        </div>
-    </div>
 
-
-
-    <h1>Funcionários da EMPRESA X</h1>
-    <p>A empresa conta com <em><?=count($funcionarios)?></em> funcoinários</p>
+    <div class="container-geral">
     
+        <div class="container-form">
+    
+                <form action="processa_login.php" method="POST">
+                    
+                    <div class="form-group">
+                        <label for="txt_usuario">USUÁRIO</label>
+                        <input type="text" class="form-control" name="txt_usuario" id="txt_usuario" required>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="txt_senha">SENHA</label>
+                        <input type="password" class="form-control" name="txt_senha" id="txt_senha" required>
+                    </div>
 
-    <form id="formPesquisa">
-        <div id="divTop">
-            <label for="inputPesquisarFuncionario">
-                Pesquisar por <select name="filtroPesquisa" id="filtroPesquisa">
-                    <option value="first_name">NOME</option>
-                    <option value="last_name">SOBRENOME</option>
-                    <option value="id">ID</option>
-                    <option value="country">PAÍS</option>
-                    <option value="department">DEPARTAMENTO</option>
-                </select>
-            </label>
+                    <div class="form-group">
+                      <button class="btn btn-primary" type="submit">LOGAR</button>
+                    </div>
+
+                </form>
+
+            </div>
+
         </div>
-        <div id="divBottom">
-            <input type="text" name="inputPesquisarFuncionario" id="inputPesquisarFuncionario" placeholder="Pesquisar...">
-            <button> <img src="img/iconePesquisar.png">PESQUISAR</button>
-    </form>
-    </div>
 
-    <button onclick="showModal()" id="botaoAdicionarFuncionario"> <img src="img/iconeAdicionar.png">ADICIONAR FUNCIONÁRIO</button>
-
-
-
-
-
-    <div id="conteudo">
-        <table>
-            <tr>
-                <th>ID:</th>
-                <th>NOME:</th>
-                <th>SOBRENOME:</th>
-                <th>E-MAIL:</th>
-                <th>SEXO:</th>
-                <th>ENDEREÇO IP:</th>
-                <th>PAÍS:</th>
-                <th>DEPARTAMENTO:</th>
-                <th>EDITAR:</th>
-                <th>DELETAR:</th>
-            </tr>
-            <?php
-            foreach($funcionarios as $funcionario){
-            ?>
-            <tr>
-                <td> <?=$funcionario->id?> </td>
-                <td> <?=$funcionario->first_name?> </td>
-                <td> <?=$funcionario->last_name?> </td>
-                <td> <?=$funcionario->email?> </td>
-                <td> <?=$funcionario->gender?> </td>
-                <td> <?=$funcionario->ip_address?> </td>
-                <td> <?=$funcionario->country?> </td>
-                <td> <?=$funcionario->department?> </td>
-                <td> <button onclick="editar(<?= $funcionario->id ?>)" id="botaoEditarFuncionario"><img src="./img/iconeEditar.png" class="iconeTabela"> </button> </td>
-                <td> <button onclick="deletar(<?= $funcionario->id ?>)" id="botaoDeletarFuncionario"><img src="./img/iconeDeletar.png" class="iconeTabela"> </button> </td>
-            </tr>
-            <?php
-            }
-            ?>
-        </table>
     </div>
 
 </body>
