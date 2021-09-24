@@ -1,7 +1,9 @@
 <?php
+    session_start();
     require("./funcoes.php");
     $funcionarioId = $_GET["id"];
     $funcionario = buscarFuncionarioPorId("./empresaX.json", $funcionarioId);
+    verificarLogin();
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +20,7 @@
 
 <body>
     <div class="container-form">
+        <h2> <a class="material-icons" href="processa_login.php?logout=true">logout</a> </h2>
         <form id="form-funcionario" action="acaoEditar.php" method="POST">
             <?php
             if (!$funcionario) echo "<h1>Funcionário não encontrado</h1>";

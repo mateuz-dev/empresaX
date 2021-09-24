@@ -1,4 +1,7 @@
 <?php
+
+    session_start();
+
     require("./funcoes.php");
 
     $funcionarios = lerArquivo("./empresaX.json");
@@ -7,6 +10,7 @@
         $funcionarios = pesquisarFuncionario($funcionarios, $_GET["inputPesquisarFuncionario"], $_GET["filtroPesquisa"], "./empresaX.json");
     }
 
+    verificarLogin();
 ?>
 
 
@@ -27,6 +31,16 @@
 
 
 <body>
+
+    <header>
+        <div>
+            <p><img src="./img/iconeUsuario.png"> <?=ucfirst($_SESSION["usuario"])?>
+            <img src="./img/iconeTempo.png" alt=""><?=$_SESSION["data_hora"]?></p>
+        </div>
+
+        <h2><a class="material-icons" href="processa_login.php?logout=true">logout</a></h2>
+    </header>
+
     <div id="modalContainer">
         <div id="adicionarFuncionarioTela">
             <p>Adicionar Funciorário</p>
