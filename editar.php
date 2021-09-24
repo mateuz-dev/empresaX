@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./editar.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="./script.js" defer></script>
     <title>Empresa X</title>
@@ -20,7 +20,6 @@
 
 <body>
     <div class="container-form">
-        <h2> <a class="material-icons" href="processa_login.php?logout=true">logout</a> </h2>
         <form id="form-funcionario" action="acaoEditar.php" method="POST">
             <?php
             if (!$funcionario) echo "<h1>Funcionário não encontrado</h1>";
